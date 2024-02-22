@@ -48,13 +48,15 @@ const loginUser = async (req, res) => {
         return res.json({ status: 'error', user: "Couldn't login user" })
     }
 }
+
+//authenticate
 const getUser = async (req, res) => {
     const token = req.headers['x-access-token']
     if (token) {
         try {
             const decoded = jwt.verify(token, 'emdad1234')
             const email = decoded.email
-            console.log(decoded.id)
+            //console.log(decoded.id)
             const user = await User.findOne({ email: email })
             if(user){
                 return res.json({ status: 'ok',UserData: user })
@@ -67,7 +69,7 @@ const getUser = async (req, res) => {
             res.json({ status: 'error', error: error })
         }
     } else {
-        res.json({ status: 'error', error: 'invalid token hr' })
+        res.json({ status: 'error', error: 'User is not logged in' })
     }
 
 }

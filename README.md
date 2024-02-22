@@ -1,1 +1,1 @@
-# Admin_Panel_hub
+# InventoryManager

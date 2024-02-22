@@ -17,14 +17,15 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }));
 
 const connectDB = async () => {
-    const mongoURL = process.env.DB_RUL;
+    const mongoURL = process.env.database_url;
     try {
         await mongoose.connect(mongoURL);
-        console.log('DB is connected');
+        console.log('Database is connected');
     } catch (error) {
         console.log(error);
     }
 };
+
 app.get('/user', async (req, res) => {
     return res.json({
         "hi": "how are you?"
