@@ -14,7 +14,7 @@ const createShop = async (req, res) => {
             const newShop = await Shop.create({
                 name: req.body.name,
                 owner: decoded.id,
-                image: "https://res.cloudinary.com/dv4j8hjqf/image/upload/v1689848305/" + req.body.image + ".jpg",
+                image: req.body.image,
                 location: req.body.location,
                 description: req.body.description
             })

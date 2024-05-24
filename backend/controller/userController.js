@@ -7,12 +7,14 @@ const User = require("../model/userModel")
 const registerUser = async (req, res) => {
     const newPassword = await bcrypt.hash(req.body.password, 10)
     //console.log(newPassword);
+    //image: "https://res.cloudinary.com/dv4j8hjqf/image/upload/v1689848305/" + req.body.image + ".jpg",
+    
     try {
         await User.create({
             name: req.body.name,
             email: req.body.email,
             password: newPassword,
-            image: "https://res.cloudinary.com/dv4j8hjqf/image/upload/v1689848305/" + req.body.image + ".jpg",
+            image: req.body.image,
         })
         res.json({ status: 'ok' })
     } catch (error) {
@@ -48,18 +50,16 @@ const loginUser = async (req, res) => {
         return res.json({ status: 'error', user: "Couldn't login user" })
     }
 }
-
-//authenticate
 const getUser = async (req, res) => {
     const token = req.headers['x-access-token']
     if (token) {
         try {
             const decoded = jwt.verify(token, 'emdad1234')
             const email = decoded.email
-            //console.log(decoded.id)
+            console.log(decoded.id)
             const user = await User.findOne({ email: email })
             if(user){
-                return res.json({ status: 'ok',UserData: user })
+                return res.json({ status: 'ok',userData: user })
             }else{
                 res.json({ status: 'error', error: 'User not found' })
             }
@@ -69,7 +69,7 @@ const getUser = async (req, res) => {
             res.json({ status: 'error', error: error })
         }
     } else {
-        res.json({ status: 'error', error: 'User is not logged in' })
+        res.json({ status: 'error', error: 'invalid token hr' })
     }
 
 }

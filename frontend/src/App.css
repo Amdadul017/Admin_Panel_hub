@@ -1,3 +1,7 @@
+body{
+  background-color: #CCCCFF;
+}
+
 .App {
   text-align: center;
 }
@@ -35,4 +39,11 @@
   to {
     transform: rotate(360deg);
   }
+}
+button{
+  background-color: transparent;
+  border: none;
+}
+a{
+  text-decoration: none;
 }

@@ -20,7 +20,7 @@ const connectDB = async () => {
     const mongoURL = process.env.database_url;
     try {
         await mongoose.connect(mongoURL);
-        console.log('Database is connected');
+        console.log('DB is connected');
     } catch (error) {
         console.log(error);
     }

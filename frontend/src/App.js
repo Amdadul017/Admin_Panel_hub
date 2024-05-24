@@ -1,24 +1,33 @@
-import logo from './logo.svg';
+import AuthProvider from './components/AuthProvider';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+
 import './App.css';
+import Dashboard from './pages/Dashboard';
+import Login from './pages/Login';
+import Register from './pages/Register';
+import NaveBar from './components/NaveBar';
+import CreateShop from './pages/CreateShop';
+import CreateCategory from './pages/CreateCategory';
+import CategoryInfo from './pages/CategoryInfo';
+import AddProdunct from './pages/AddProdunct';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload. I changed something
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <AuthProvider>
+        <NaveBar />
+        <Routes>
+          <Route path="/" element={<Dashboard />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/createShop" element={<CreateShop />} />
+          <Route path="/createCategory" element={<CreateCategory />} />
+          <Route path="/categoryInfo/:id" element={<CategoryInfo />} />
+          <Route path="/addProduct/:id" element={<AddProdunct />} />
+        </Routes>
+      </AuthProvider>
+    </BrowserRouter>
   );
 }
 

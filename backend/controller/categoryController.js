@@ -5,7 +5,7 @@ const bcrypt = require('bcryptjs')
 const Category = require("../model/categoryModel")
 
 const createCategory = async (req, res) => {
-    console.log(req.body)
+    //console.log(req.body)
     const token = req.headers['x-access-token']
 
     if (token) {
@@ -13,7 +13,7 @@ const createCategory = async (req, res) => {
             const newCategory = await Category.create({
                 name: req.body.name,
                 shop_id: req.body.shop_id,
-                image: "https://res.cloudinary.com/dv4j8hjqf/image/upload/v1689848305/" + req.body.image + ".jpg",
+                image: req.body.image,
                 quantity: req.body.quantity,
                 max_capacity: req.body.max_capacity
             })
